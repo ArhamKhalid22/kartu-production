@@ -1,0 +1,9 @@
+{
+  "name": "kartu",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node vercel-build.mjs"
+  }
+}
