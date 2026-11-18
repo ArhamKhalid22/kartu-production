@@ -1,0 +1,11 @@
+config.js
+
+# Isolated Sites checkout and packaged releases (identity remains in deployment/site).
+deployment/site/.git/
+deployment/site/.sites-*/
+deployment/site/dist/
+deployment/site/RELEASE.json
+deployment/*.tar.gz
+
+__pycache__/
+deployment/staging/supabase/.temp/

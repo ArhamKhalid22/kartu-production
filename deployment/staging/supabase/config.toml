@@ -1,0 +1,9 @@
+project_id = "kartu-staging"
+
+[auth]
+site_url = "https://kartu-staging-arham.stripycompass32.chatgpt.site"
+additional_redirect_urls = ["https://kartu-staging-arham.stripycompass32.chatgpt.site/", "http://localhost:8000/", "https://grupinis-pirkimas-arhamkhalid22s-projects.vercel.app/", "https://grupinis-pirkimas-arhamkhalid22s-projects.vercel.app/**", "https://grupinis-*-pirkimas-arhamkhalid22s-projects.vercel.app", "https://grupinis-*-pirkimas-arhamkhalid22s-projects.vercel.app/**"]
+
+[auth.email]
+enable_confirmations = true
+otp_expiry = 3600
