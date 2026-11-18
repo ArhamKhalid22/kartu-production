@@ -1,0 +1,41 @@
+name: Expand uploaded Kartu project
+on:
+  push:
+    branches: [main]
+    paths:
+      - "New project.zip"
+      - ".github/workflows/unpack-project.yml"
+permissions:
+  contents: write
+jobs:
+  expand:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "New project.zip"
+          mkdir -p /tmp/kartu-unpack
+          unzip -q "New project.zip" -d /tmp/kartu-unpack
+          test -d "/tmp/kartu-unpack/New project"
+          rsync -a \
+            --exclude='__MACOSX' \
+            --exclude='.git' \
+            --exclude='.temp' \
+            --exclude='.branches' \
+            --exclude='*.tar.gz' \
+            --exclude='deployment/site/dist' \
+            --exclude='deployment/site/worker' \
+            "/tmp/kartu-unpack/New project/" ./
+          rm -f "New project.zip"
+          rm -rf __MACOSX
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Extract complete Kartu project source"
+          git push
